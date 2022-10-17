@@ -6,6 +6,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      message:
+        description: 'message to commit'
+        required: true
+        type: string
 
 jobs:
   deploy:
@@ -32,4 +37,6 @@ jobs:
           EXTERNAL_REPOSITORY: zjcrender/zjcrender.github.io
           PUBLISH_BRANCH: main
           PUBLISH_DIR: ./public
+          full_commit_message: ${{ inputs.message }}
           commit_message: ${{ github.event.head_commit.message }}
+          
